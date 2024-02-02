@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import CountUp from '../sub/countup/CountUp';
 import { SliderBtn } from '../sub/slidderBtn/SliderBtn';
+import { Dpay } from '../sub/DepayBtn/Dpay';
 
 export const Loader = () => {
   const [countUpVisible, setCountUpVisible] = useState(false);
-
   const toggleCountUpVisibility = () => {
-    setCountUpVisible(!countUpVisible);
+    setTimeout(() => {
+      setCountUpVisible(!countUpVisible);
+    }, 2000);
   };
 
   return (
@@ -16,11 +18,16 @@ export const Loader = () => {
       <div className="">
         {
           (countUpVisible)?
+          <>
           <CountUp />
+          <div className="flex mt-5 justify-center">
+          <Dpay/>
+
+          </div>
+          </>
           :
-<div className="w-72 h-32 "></div>
-        }
-        <div className='flex justify-center mt-5'>
+<div className="w-72 h-32 mx-auto flex justify-center">
+<div className='flex justify-center mt-5'>
           <label htmlFor="toggle" className="toggle-label">
             <input
               className="circle"
@@ -32,6 +39,9 @@ export const Loader = () => {
             />
           </label>
         </div>
+</div>
+        }
+      
       </div>
     </>
   );

@@ -23,13 +23,13 @@ export default function Navbar() {
 		setIsNetworkSwitchHighlighted(false);
 		setIsConnectHighlighted(false);
 	};
-	console.log("account", address);
+	// console.log("account", address);
 
 	return (
 		<>
 		<header>
 				<div
-					className={` ${styles.backdrop}`}
+					className={`mb-5 ${styles.backdrop}`}
 					style={{
 						opacity:
 							isConnectHighlighted || isNetworkSwitchHighlighted

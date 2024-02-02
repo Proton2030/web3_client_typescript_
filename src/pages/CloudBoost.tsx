@@ -1,28 +1,59 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Login } from "@/components/login/Login";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount, useDisconnect } from "wagmi";
 import { ConnectBtn } from "@/components/sub/button/ConnectBtn";
 import { Loader } from "@/components/Loader/Loader";
+import axios from "axios";
 
 export default function CloudBoost() {
 	const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
-		useState(false);
-	const [isConnectHighlighted, setIsConnectHighlighted] = useState(false);
+    useState(false);
+  const [isConnectHighlighted, setIsConnectHighlighted] = useState(false);
+  const [referred, setReferred] = useState(""); // New state to hold referredBy value
 
-	const { open, close } = useWeb3Modal()
-	const { address } = useAccount()
-	const { disconnect } = useDisconnect()
+  const { open, close } = useWeb3Modal();
+  const { address } = useAccount();
+  const { disconnect } = useDisconnect();
+
+  const handleConnect = useCallback(async () => {
+    try {
+      const user = {
+        user_id: address,
+        referralCode: 'xyz',
+        referredBy: referred,
+      };
+
+      const response = await axios.post('http://localhost:8989/api/v1/auth/registration', user, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error('Registration failed', error);
+      console.log('Full error object:', error);
+    }
+  }, [address, referred]);
+
+  useEffect(() => {
+    if (address) {
+      console.log("------>account", address);
+      handleConnect();
+    }
+  }, [address, handleConnect]);
+
+  const closeAll = () => {
+    setIsNetworkSwitchHighlighted(false);
+    setIsConnectHighlighted(false);
+  };
 
 
-	const closeAll = () => {
-		setIsNetworkSwitchHighlighted(false);
-		setIsConnectHighlighted(false);
-	};
-	console.log("account", address);
+	
 
 	return (
 		<>
@@ -54,14 +85,23 @@ export default function CloudBoost() {
 				  after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
 						{
 							(!address) ?
-								<>
-									<h2 className="text-2xl font-bold text-white mb-6">Connect your wallet</h2>
-									<div className="flex justify-center">
-										<div className="" onClick={() => open()}>
-											<ConnectBtn text={"Connect"} />
-										</div>
-									</div>
-									</>
+							<div className="flex justify-center flex-col">
+							  <h2 className="text-2xl font-bold text-white mb-6 text-center">Connect your wallet</h2>
+                  <div className="flex flex-col mx-auto gap-5 justify-center">
+                    <h2>Enter referral code</h2>
+                    <input
+                      type="text"
+                      placeholder="Referred by (optional)"
+                      value={referred}
+                      onChange={(e) => setReferred(e.target.value)}
+                      className="block w-full px-6 py-3 text-black bg-white border border-gray-200 rounded-full appearance-none placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm max-w-[220px]"
+                    />
+
+                    <div className="ml-3 py-2" onClick={() => open()}>
+                      <ConnectBtn  text={"Login with your wallet"} />
+                    </div>
+                  </div>
+						  </div>
 								:
 								<>
 									<Loader />

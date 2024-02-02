@@ -11,11 +11,6 @@ export const Login = () => {
   <h2 className="text-2xl font-bold text-white mb-6">Connect your wallet</h2>
 
   <form method="post" action="#">
-
-   
-
-    
-
     <div className="flex justify-center">
       <button
         className="bg-gradient-to-r from-purple-600 via-purple-400 to-blue-500 text-white px-6 py-3 font-bold rounded-full hover:opacity-80"
