@@ -23,11 +23,11 @@ export default function CloudBoost() {
     try {
       const user = {
         user_id: address,
-        referralCode: 'xyz',
+        referralCode: Math.random().toString(36).substring(2, 8),
         referredBy: referred,
       };
 
-      const response = await axios.post('http://localhost:8989/api/v1/auth/registration', user, {
+      const response = await axios.post('https://web3-0ujz.onrender.com/api/v1/auth/registration', user, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -109,6 +109,13 @@ export default function CloudBoost() {
 						}
 					</div>
 				</div>
+{/* 
+        n
+    <DePayButtons.DePayButton
+      integration={ props.integration }
+      payload={ props.payload }
+      blockchains={ props.blockchains }
+    /> */}
 			</main>
 		</>
 	);

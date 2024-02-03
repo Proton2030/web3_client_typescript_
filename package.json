@@ -9,6 +9,7 @@
 	},
 	"dependencies": {
 		"@depay/buttons": "^12.3.6",
+		"@depay/js-verify-signature": "^3.1.8",
 		"@depay/widgets": "^12.4.3",
 		"@headlessui/react": "^1.7.18",
 		"@maticnetwork/maticjs": "^3.7.8",

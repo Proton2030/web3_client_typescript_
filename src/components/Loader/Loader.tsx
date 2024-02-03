@@ -20,13 +20,13 @@ export const Loader = () => {
           (countUpVisible)?
           <>
           <CountUp />
-          <div className="flex mt-5 justify-center">
-          <Dpay/>
-
-          </div>
+         
           </>
           :
-<div className="w-72 h-32 mx-auto flex justify-center">
+          <>
+          
+          <div className="w-72 h-32 mx-auto flex justify-center">
+            
 <div className='flex justify-center mt-5'>
           <label htmlFor="toggle" className="toggle-label">
             <input
@@ -40,6 +40,12 @@ export const Loader = () => {
           </label>
         </div>
 </div>
+<div className="flex justify-center">
+<Dpay/>         
+
+</div>
+          </>
+
         }
       
       </div>

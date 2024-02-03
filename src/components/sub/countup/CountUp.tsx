@@ -2,11 +2,27 @@ import React, { useState, useEffect } from 'react';
 import ProgressBar from './ProgressBar/ProgressBar';
 
 const CountUp: React.FC = () => {
+  const [is_active, setIs_active] = useState(false);
+
+  const getRandomNumber = () => {
+    if (!is_active) {
+      return Math.floor(Math.random() * 21) + 300; // Random number between 300 and 320
+    } else {
+      return Math.floor(Math.random() * 91) + 900; // Random number between 900 and 990
+    }
+  };
+
+  
+  const getRandomDifference = () => {
+    return !is_active ? Math.floor(Math.random() * 21) : Math.floor(Math.random() * 91);
+  };
   const [currentNumber, setCurrentNumber] = useState(getRandomNumber());
   const [nextNumber, setNextNumber] = useState(getRandomNumber());
   const [difference, setDifference] = useState(getRandomDifference());
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,7 +48,7 @@ const CountUp: React.FC = () => {
     return () => clearInterval(progressInterval);
   }, [isLoading]);
 
-  const progressValue = (currentNumber - 1000) / (9999 - 1000) * 100;
+  const progressValue = (currentNumber - 100) / (999 - 100) * 100;
 
   return (
     <div className="flex flex-col items-center mt-8">
@@ -55,7 +71,13 @@ const CountUp: React.FC = () => {
   );
 };
 
-const getRandomNumber = () => Math.floor(Math.random() * 9000) + 1000;
-const getRandomDifference = () => [100, 200, 400, 600][Math.floor(Math.random() * 4)];
+//  const getRandomNumber = () => {
+//     if (is_active) {
+//       return Math.floor(Math.random() * 691) + 300; // Random number between 300 and 990
+//     } else {
+//       return Math.floor(Math.random() * 8000) + 1000; // Default range if not active
+//     }
+//   };
+// const getRandomDifference = () => [100][Math.floor(Math.random() * 4)];
 
 export default CountUp;
