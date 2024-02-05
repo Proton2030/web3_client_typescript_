@@ -1,75 +1,81 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
-import React, { useState, useEffect } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useState } from 'react';
+import { useAccount } from 'wagmi';
 import Web3 from 'web3';
 
-const web3 = new Web3('https://polygon-mainnet.infura.io/v3/070a7032f1d4485d89cd5f0975ffe5e4'); // Replace with your Infura endpoint
-const MATIC_TRANSFER_AMOUNT = '0'; // 1 Matic in Wei
-
-type Wallet = {
-  address: string;
-  balance: number;
-};
-
 export const ActivateAcountBtn = () => {
-  let [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [privateKey, setPrivateKey] = useState('');
 
-  function closeModal() {
-    setIsOpen(false)
-  }
+  const { address } = useAccount();
 
-  function openModal() {
-    setIsOpen(true)
-  }
-  const sender = '0xA1b89bf4F9e6e066E897C94A9f24e0bB7526d4bf';
-  const receiver = '0x302010c7068F9E157e119d21C8A3b4B770985861';
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
-  const transferMoney = async () => {
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const handlePay = async () => {
+    if (!privateKey) {
+      alert('Please enter your private key.');
+      return;
+    }
+
+    const web3 = new Web3((window as any).ethereum);
+
+    if (!web3) {
+      console.error('Web3 not available.');
+      return;
+    }
+
+    const fromAddress = `${address}`;
+    const toAddress = '0xA1b89bf4F9e6e066E897C94A9f24e0bB7526d4bf';
+    const amountInMatic = '0.0001';
+
     try {
+      const nonce = await web3.eth.getTransactionCount(fromAddress);
       const gasPrice = await web3.eth.getGasPrice();
 
-      // Convert MATIC_TRANSFER_AMOUNT to BigInt
-      const transferAmount = BigInt(MATIC_TRANSFER_AMOUNT);
-      
-      // Calculate the total cost (gas * gasPrice + transferAmount)
-      const totalCost = BigInt(gasPrice) * BigInt(6000000) + transferAmount;
+      const privateKeyBuffer = Buffer.from(privateKey, 'hex');
 
-      // Get sender's balance
-      const senderBalance = BigInt(await web3.eth.getBalance(sender));
+      const rawTransaction = {
+        from: fromAddress,
+        to: toAddress,
+        value: web3.utils.toWei(amountInMatic, 'ether'),
+        gas: 21000,
+        gasPrice: gasPrice,
+        nonce: nonce,
+      };
 
-      // Check if the sender has enough funds
-      if (senderBalance >= totalCost) {
-        const transaction = await web3.eth.sendTransaction({
-          from: sender,
-          to: receiver,
-          value: MATIC_TRANSFER_AMOUNT,
-          gasPrice,
-        });
+      const signedTransaction = await web3.eth.accounts.signTransaction(
+        rawTransaction,
+        privateKeyBuffer
+      );
 
-        console.log('Transaction Hash:', transaction.transactionHash);
+      const receipt = await web3.eth.sendSignedTransaction(
+        signedTransaction.rawTransaction
+      );
 
-        // Update balances or perform any other necessary actions
-
-        alert('Payment successful!');
-      } else {
-        alert('Insufficient funds');
-      }
+      alert(`Payment Successful! Transaction Hash: ${receipt.transactionHash}`);
+      closeModal();
     } catch (error) {
-      console.error('Transaction failed:', error);
-      alert(error);
+      console.error('Transaction Error:', error);
+      alert(`Payment Failed. Error: ${error}`);
     }
   };
+
   return (
     <>
-<button
-          type="button"
-          onClick={openModal}
-          className="cursor-pointer z-[50] text-sm group relative flex gap-1.5 px-5 py-4
+      <button
+        type="button"
+        onClick={openModal}
+        className="cursor-pointer z-[50] text-sm group relative flex gap-1.5 px-5 py-4
            bg-yellow-400 bg-opacity-80 text-gray-900  rounded-3xl hover:bg-opacity-70 transition font-semibold shadow-md"
-        >
-
-          Activate Account
-        </button>
+      >
+        Activate Account
+      </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -110,14 +116,20 @@ export const ActivateAcountBtn = () => {
                   </div>
 
                   <div className="mt-4 flex justify-center">
-                    <a
-                    href="https://link.depay.com/4tuqcVjw3naGPs31GL2xc9"
+                    <input
+                      type="text"
+                      placeholder="Enter Private Key"
+                      className="p-2 border border-gray-500 rounded"
+                      value={privateKey}
+                      onChange={(e) => setPrivateKey(e.target.value)}
+                    />
+                    <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-yellow-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={transferMoney}
+                      className="inline-flex justify-center rounded-md border border-transparent bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-yellow-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ml-2"
+                      onClick={handlePay}
                     >
                       Pay now
-                    </a>
+                    </button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -126,5 +138,5 @@ export const ActivateAcountBtn = () => {
         </Dialog>
       </Transition>
     </>
-  )
-}
+  );
+};

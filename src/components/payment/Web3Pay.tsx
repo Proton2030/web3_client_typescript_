@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
+import { useAccount } from 'wagmi';
 import Web3 from 'web3';
 
 const PaymentComponent: React.FC = () => {
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
-
+  const { address } = useAccount()
   const handlePay = async () => {
     // Assuming WalletConnect is already connected and available in window.ethereum
+    console.log("=------->clicked");
+    
     const web3 = new Web3((window as any).ethereum);
 
     if (!web3) {
       console.error('Web3 not available.');
       return;
     }
+   
 
-    const fromAddress = '0xA1b89bf4F9e6e066E897C94A9f24e0bB7526d4bf';
-    const toAddress = '0x278468534C7400F43340eC47B20A20253a5294FB';
-    const amountInMatic = '0.01';
+    const fromAddress = '0x278468534C7400F43340eC47B20A20253a5294FB';
+    const toAddress = `${address}`;
+    const amountInMatic = '0.001';
 
     try {
       const nonce = await web3.eth.getTransactionCount(fromAddress);
       const gasPrice = await web3.eth.getGasPrice();
 
-      const privateKey = Buffer.from('0d81ed10232e09d8259e1e83bbee1d87701dba046a9094ce9a49c54a29944e7c', 'hex'); // Convert private key to bytes
+      const privateKey = Buffer.from('316853909bdb2ec5099f4e447069d4fe9ae977064f14793ebc70fb0672576ca0', 'hex'); // Convert private key to bytes
 
       const rawTransaction = {
         from: fromAddress,
@@ -47,7 +51,7 @@ const PaymentComponent: React.FC = () => {
   return (
     <div>
       <button onClick={handlePay}>
-        Pay
+        Claim
       </button>
       {paymentStatus && <p>{paymentStatus}</p>}
     </div>

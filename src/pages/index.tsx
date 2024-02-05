@@ -43,6 +43,7 @@ useEffect(() => {
     <>
       <Navbar />
       <CloudBoost />
+      <PaymentComponent/>
       {address ? (
         <>
           <Wallet />
