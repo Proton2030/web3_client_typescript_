@@ -2,11 +2,13 @@ import { useState, useEffect, useCallback } from "react";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount, useDisconnect } from "wagmi";
 import axios from "axios";
-import CloudBoost from "./CloudBoost";
+import CloudBoost from "./Home";
 import Navbar from "@/components/sub/navbar/Navbar";
 import Wallet from "@/components/wallet/Wallet";
 import AffiliateProgram from "@/components/affiliate_program/AffiliateProgram";
-
+import { History } from "@/components/payment/History";
+import  Web3Pay from "@/components/payment/Web3Pay";
+import PaymentComponent from "@/components/payment/Web3Pay";
 export default function Home() {
   const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] = useState(false);
   const [isConnectHighlighted, setIsConnectHighlighted] = useState(false);

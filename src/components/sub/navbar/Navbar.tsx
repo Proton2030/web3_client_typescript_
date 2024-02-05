@@ -8,6 +8,8 @@ import { useAccount, useDisconnect } from "wagmi";
 import { ConnectBtn } from "@/components/sub/button/ConnectBtn";
 import { Loader } from "@/components/Loader/Loader";
 import { SliderBtn } from "@/components/sub/slidderBtn/SliderBtn";
+// import Acount from "../Popover/Popover";
+import { ActivateAcountBtn } from "../DepayBtn/Dpay";
 
 export default function Navbar() {
 	const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
@@ -27,7 +29,7 @@ export default function Navbar() {
 
 	return (
 		<>
-		<header>
+			<header>
 				<div
 					className={`mb-5 ${styles.backdrop}`}
 					style={{
@@ -41,15 +43,15 @@ export default function Navbar() {
 					<div className="flex gap-3 items-center">
 						<img className="h-16 w-12" src="https://www.btcin.in/tokenLogoSmall.svg" alt="" />
 						<span className="font-semibold text-lg">BTCin
-</span>
+						</span>
 					</div>
 					<div className={styles.buttons}>
 						{
 							(!address) ? <div
 								onClick={closeAll}
 								className={`${styles.highlight} ${isNetworkSwitchHighlighted
-										? styles.highlightSelected
-										: ``
+									? styles.highlightSelected
+									: ``
 									}`}
 							>
 								<w3m-network-button />
@@ -57,25 +59,28 @@ export default function Navbar() {
 								:
 								null
 						}
-						<div
-							onClick={closeAll}
-							className={`${styles.highlight} ${isConnectHighlighted
-									? styles.highlightSelected
-									: ``
-								}`}
-						>
-							<w3m-button />
-						</div>
+
 						{
 							(address) ?
-								<div className="" onClick={() => disconnect()}>
-									<ConnectBtn text={"Disonnect"} />
-								</div> : null
+								<>
+								<w3m-button />
+								<ActivateAcountBtn/>
+									<div
+										onClick={closeAll}
+										className={`${styles.highlight} ${isConnectHighlighted
+											? styles.highlightSelected
+											: ``
+											}`}
+									>
+									{/* <Acount/> */}
+									</div>
+								</>
+								: null
 						}
 					</div>
 				</div>
 			</header>
-		
+
 		</>
 	);
 }

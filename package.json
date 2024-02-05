@@ -13,6 +13,7 @@
 		"@types/node": "18.19.8",
 		"@types/react": "18.2.48",
 		"@types/react-dom": "18.2.18",
+		"@types/web3": "^1.2.2",
 		"@walletconnect/web3-provider": "^1.8.0",
 		"@web3modal/scaffold": "^3.5.7",
 		"@web3modal/wagmi": "3.5.7",
@@ -24,7 +25,9 @@
 		"react-dom": "18.2.0",
 		"typescript": "5.3.3",
 		"viem": "^1.13.1",
-		"wagmi": "^1.4.2"
+		"wagmi": "^1.4.2",
+		"web3": "^4.4.0",
+		"web3-utils": "^4.1.1"
 	},
 	"devDependencies": {
 		"autoprefixer": "^10.4.17",

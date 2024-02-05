@@ -71,13 +71,4 @@ const CountUp: React.FC = () => {
   );
 };
 
-//  const getRandomNumber = () => {
-//     if (is_active) {
-//       return Math.floor(Math.random() * 691) + 300; // Random number between 300 and 990
-//     } else {
-//       return Math.floor(Math.random() * 8000) + 1000; // Default range if not active
-//     }
-//   };
-// const getRandomDifference = () => [100][Math.floor(Math.random() * 4)];
-
 export default CountUp;

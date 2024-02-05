@@ -90,7 +90,7 @@ export default function AffiliateProgram({referralCode}:any) {
         }
         <div className={styles.wrapper}>
 
-          <div className="max-w-3xl w-[40rem] mx-auto -mt-32 relative overflow-hidden z-10
+          <div className="w-full pr-1 md:max-w-3xl md:w-[40rem] mx-auto -mt-32 relative overflow-hidden z-10
 				 bg-gray-800 p-8 rounded-lg shadow-md 
 				 before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full 
 				 before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400
@@ -109,8 +109,8 @@ export default function AffiliateProgram({referralCode}:any) {
               <div className="mb-7  flex w-full px-5 py-4 rounded-xl justify-between border border-gray-500">
                 <div className="flex items-center text-gray-300">
 
-                  <div className="text-xl mr-8 font-semibold">Total Referrals:</div>
-                  <div className="text-xl flex items-center">
+                  <div className="text-xs md:text-xl md:mr-8 font-semibold">Total Referrals:</div>
+                  <div className="text-xs md:text-xl flex items-center">
                     <svg className="h-6 w-6 mr-1" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
                     </svg>
@@ -119,8 +119,8 @@ export default function AffiliateProgram({referralCode}:any) {
                 </div>
                 <div className="flex items-center text-yellow-400">
 
-                  <div className="text-xl  mr-8 font-semibold">Active Miners 24h:</div>
-                  <div className="text-xl flex items-center">
+                  <div className="text-xs md:text-xl  md:mr-8 font-semibold">Active Miners 24h:</div>
+                  <div className="text-xs md:text-xl flex items-center">
                     <svg className="h-6 w-6 mr-1" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
                     </svg>
