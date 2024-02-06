@@ -40,6 +40,7 @@ export default function CloudBoost() {
     }
   }, [address, referred]);
 
+
   useEffect(() => {
     if (address) {
       console.log("------>account", address);
@@ -86,35 +87,6 @@ export default function CloudBoost() {
                 </div>
             </>
             :
-            
-          //   <div className={styles.wrapper}>
-          //     <div className="max-w-4xl mx-auto -mt-20 w-[30rem] relative overflow-hidden z-10
-          //  bg-gray-800 p-8 rounded-lg shadow-md 
-          //  before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full 
-          //  before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400
-          //   after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
-
-          //       <div className="flex justify-center flex-col">
-          //         <h2 className="text-2xl font-bold text-white mb-6 text-center">Connect your wallet</h2>
-          //         <div className="flex flex-col mx-auto gap-5 justify-center">
-          //           <h2>Enter referral code</h2>
-          //           <input
-          //             type="text"
-          //             placeholder="Referred by (optional)"
-          //             value={referred}
-          //             onChange={(e) => setReferred(e.target.value)}
-          //             className="block w-full px-6 py-3 text-black bg-white border border-gray-200 rounded-full appearance-none placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm max-w-[220px]"
-          //           />
-
-          //           <div className="ml-3 py-2" onClick={() => open()}>
-          //             <ConnectBtn text={"Login with your wallet"} />
-          //           </div>
-          //         </div>
-          //       </div>
-
-          //     </div>
-          //   </div>
-
           <>
             <div className="w-full h-[100vh]">
     

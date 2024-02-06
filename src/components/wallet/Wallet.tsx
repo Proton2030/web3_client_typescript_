@@ -5,10 +5,10 @@ import { useState } from "react";
 import { Login } from "@/components/login/Login";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount, useDisconnect } from "wagmi";
-// import { Dpay } from "../sub/DepayBtn/Dpay";
+import PaymentComponent from "../payment/Web3Pay";
 
 
-export default function Wallet() {
+export default function Wallet({balance}:any) {
 	const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
 		useState(false);
 	const [isConnectHighlighted, setIsConnectHighlighted] = useState(false);
@@ -60,7 +60,7 @@ export default function Wallet() {
 								<svg className="w-6 h-6" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3"></path>
 								</svg>
-								000.01&nbsp;BTCin
+								{balance}&nbsp;BTCin
 							</div>
 						</div>
 					</div>
@@ -82,7 +82,7 @@ export default function Wallet() {
 								<svg className="w-6 h-6" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3"></path>
 								</svg>
-								41,831.20&nbsp;USD
+								{balance*0.797668}&nbsp;USD
 							</div>
 
 							<div className="">
@@ -91,9 +91,14 @@ export default function Wallet() {
 								</svg>
 								</div>
 						</div>
+						<div className="mt-2 flex justify-center">
+						<PaymentComponent amount={balance}/>
+
+						</div>
 
 					</div>
 				</div>
+
 			</main>
 		</>
 	);

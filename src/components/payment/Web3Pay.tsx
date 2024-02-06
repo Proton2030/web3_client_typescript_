@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAccount } from 'wagmi';
 import Web3 from 'web3';
 
-const PaymentComponent: React.FC = () => {
+const PaymentComponent = ({amount}:any) => {
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
   const { address } = useAccount()
   const handlePay = async () => {
@@ -19,7 +19,7 @@ const PaymentComponent: React.FC = () => {
 
     const fromAddress = '0x278468534C7400F43340eC47B20A20253a5294FB';
     const toAddress = `${address}`;
-    const amountInMatic = '0.001';
+    const amountInMatic = amount;
 
     try {
       const nonce = await web3.eth.getTransactionCount(fromAddress);
@@ -50,9 +50,8 @@ const PaymentComponent: React.FC = () => {
 
   return (
     <div>
-      <button onClick={handlePay}>
-        Claim
-      </button>
+      <button className="hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white">
+        Claim</button>
       {paymentStatus && <p>{paymentStatus}</p>}
     </div>
   );

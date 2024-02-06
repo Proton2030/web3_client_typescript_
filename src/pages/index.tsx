@@ -43,10 +43,9 @@ useEffect(() => {
     <>
       <Navbar />
       <CloudBoost />
-      <PaymentComponent/>
       {address ? (
         <>
-          <Wallet />
+          <Wallet balance={user?.mining_balance} />
           <AffiliateProgram  referralCode={user?.referralCode}/>
         </>
       ) : null}

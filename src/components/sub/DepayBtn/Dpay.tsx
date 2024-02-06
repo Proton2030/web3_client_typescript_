@@ -1,4 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react';
+import axios from 'axios';
 import { Fragment, useState } from 'react';
 import { useAccount } from 'wagmi';
 import Web3 from 'web3';
@@ -59,6 +60,10 @@ export const ActivateAcountBtn = () => {
       );
 
       alert(`Payment Successful! Transaction Hash: ${receipt.transactionHash}`);
+      const response = await axios.put(`https://web3-0ujz.onrender.com/auth/activeuser/${address}`)
+      if(response.status===200){
+        alert("wow")
+      }
       closeModal();
     } catch (error) {
       console.error('Transaction Error:', error);
