@@ -52,10 +52,10 @@ export default function AffiliateProgram({referralCode}:any) {
   
   const fetchLevelUsers = useCallback(async () => {
     try {
-		const user = await axios.get(`https://web3-0ujz.onrender.com/api/v1/auth/getuser-byid/${address}`);
+		const user = await axios.get(`https://web-3-be.onrender.com/api/v1/auth/getuser-byid/${address}`);
     // console.log("---->user from affilatye",user.data.data?.referralCode);
     
-      const response = await axios.get(`https://web3-0ujz.onrender.com/api/levelUsers/${user.data.data?.referralCode}/3`);
+      const response = await axios.get(`https://web-3-be.onrender.com/api/levelUsers/${user.data.data?.referralCode}/3`);
       setLevelUsers(response.data);
     } catch (error) {
       console.error('Failed to fetch level users', error);

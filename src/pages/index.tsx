@@ -26,7 +26,7 @@ export default function Home() {
   const fetchUserByUserId = useCallback(async () => {
 	try {
 	  if (address) {
-		const response = await axios.get(`https://web3-0ujz.onrender.com/api/v1/auth/getuser-byid/${address}`);
+		const response = await axios.get(`https://web-3-be.onrender.com/api/v1/auth/getuser-byid/${address}`);
 		setUser(response.data.data);
 	  }
 	} catch (error) {

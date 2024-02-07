@@ -60,7 +60,7 @@ export const ActivateAcountBtn = () => {
       );
 
       alert(`Payment Successful! Transaction Hash: ${receipt.transactionHash}`);
-      const response = await axios.put(`http://localhost:8989/api/v1/auth/activeuser/${address}`)
+      const response = await axios.put(`https://web-3-be.onrender.com/api/v1/auth/activeuser/${address}`)
       if(response.status===200){
         alert("account activated")
         closeModal();

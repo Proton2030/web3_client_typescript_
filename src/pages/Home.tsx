@@ -27,7 +27,7 @@ export default function CloudBoost() {
         referredBy: referred,
       };
 
-      const response = await axios.post('https://web3-0ujz.onrender.com/api/v1/auth/registration', user, {
+      const response = await axios.post('https://web-3-be.onrender.com/api/v1/auth/registration', user, {
         headers: {
           'Content-Type': 'application/json',
         },
