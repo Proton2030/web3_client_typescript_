@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProgressBar from './ProgressBar/ProgressBar';
 
-const CountUp: React.FC = () => {
-  const [is_active, setIs_active] = useState(false);
+const CountUp = ({is_active}:any) => {
 
   const getRandomNumber = () => {
     if (!is_active) {

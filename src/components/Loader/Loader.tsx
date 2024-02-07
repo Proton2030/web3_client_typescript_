@@ -48,7 +48,7 @@ export const Loader = () => {
         {
           (user?.is_mining) ?
             <>
-              <CountUp />
+              <CountUp is_active={user?.is_active} />
             </>
             :
             <>

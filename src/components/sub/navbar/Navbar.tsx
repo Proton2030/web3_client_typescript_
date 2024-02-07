@@ -69,7 +69,7 @@ console.log("------->active user ",is_active);
 								{
 									(!is_active)?
 								<ActivateAcountBtn/>
-								:null
+								:"Activated"
 								}
 									<div
 										onClick={closeAll}
