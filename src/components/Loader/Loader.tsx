@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CountUp from '../sub/countup/CountUp';
 import { SliderBtn } from '../sub/slidderBtn/SliderBtn';
 import { ActivateAcountBtn } from '../sub/DepayBtn/Dpay';
@@ -7,12 +7,16 @@ import { useAccount } from 'wagmi';
 
 export const Loader = () => {
   const { address } = useAccount();
+  const [user, setUser] = useState<any>();
+
 
   const [countUpVisible, setCountUpVisible] = useState(false);
   const handleStartMining = async()=>{
-    const response = await axios.put(`https://web3-0ujz.onrender.com/auth/startMining/${address}`)
+    const response = await axios.patch(`http://localhost:8989/api/v1/auth/startMining/${address}`)
     if(response.status===200){
       alert("mining started")
+    }else{
+      alert("mining failed")
     }
    }
   const toggleCountUpVisibility = () => {
@@ -20,13 +24,29 @@ export const Loader = () => {
       handleStartMining()
   };
 
+
+  
+  const fetchUserByUserId = useCallback(async () => {
+    try {
+      if (address) {
+      const response = await axios.get(`https://web3-0ujz.onrender.com/api/v1/auth/getuser-byid/${address}`);
+      setUser(response.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  }, [address]);
+  useEffect(() => {
+      fetchUserByUserId();
+    }, [fetchUserByUserId]);
+  
   return (
     <>
       <div className="mx-auto flex justify-center">
       </div>
       <div className="">
         {
-          (countUpVisible) ?
+          (user?.is_mining) ?
             <>
               <CountUp />
             </>

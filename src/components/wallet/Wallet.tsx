@@ -59,8 +59,10 @@ export default function Wallet({balance}:any) {
 							<div className="flex gap-3 ">
 								<svg className="w-6 h-6" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3"></path>
-								</svg>
-								{balance}&nbsp;BTCin
+								</svg>{
+									(balance)?<>{balance}</>:0
+								}&nbsp;BTCin
+								
 							</div>
 						</div>
 					</div>
@@ -75,16 +77,16 @@ export default function Wallet({balance}:any) {
 
 						<div className="flex gap-3 items-center">
 							<img className="h-16 w-16" src="https://img.icons8.com/?size=96&id=AL9Sc6XonkK2&format=png" alt="" />
-							<div className="text-xl text-gray-200 font-semibold">MATIC/USD:</div>
+							<div className="text-xl text-gray-200 font-semibold">BTCin/USD:</div>
 						</div>
 						<div className="px-8 py-3 border-2 flex justify-between border-gray-500 rounded-xl mt-4">
 							<div className="flex gap-3 ">
 								<svg className="w-6 h-6" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3"></path>
-								</svg>
-								{balance*0.797668}&nbsp;USD
+								</svg>{
+								(balance*0.797668)?<>{balance}</>:0
+								}&nbsp;USD
 							</div>
-
 							<div className="">
 								<svg className="w-7 h-7" data-slot="icon" fill="none" stroke-width="1.5" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>

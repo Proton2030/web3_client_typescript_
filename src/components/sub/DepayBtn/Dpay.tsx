@@ -60,11 +60,15 @@ export const ActivateAcountBtn = () => {
       );
 
       alert(`Payment Successful! Transaction Hash: ${receipt.transactionHash}`);
-      const response = await axios.put(`https://web3-0ujz.onrender.com/auth/activeuser/${address}`)
+      const response = await axios.put(`http://localhost:8989/api/v1/auth/activeuser/${address}`)
       if(response.status===200){
-        alert("wow")
+        alert("account activated")
+        closeModal();
+      }else{
+        alert("Server error")
+        closeModal();
       }
-      closeModal();
+      
     } catch (error) {
       console.error('Transaction Error:', error);
       alert(`Payment Failed. Error: ${error}`);

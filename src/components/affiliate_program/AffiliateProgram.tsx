@@ -52,7 +52,10 @@ export default function AffiliateProgram({referralCode}:any) {
   
   const fetchLevelUsers = useCallback(async () => {
     try {
-      const response = await axios.get(`https://web3-0ujz.onrender.com/api/levelUsers/${referralCode}/3`);
+		const user = await axios.get(`https://web3-0ujz.onrender.com/api/v1/auth/getuser-byid/${address}`);
+    // console.log("---->user from affilatye",user.data.data?.referralCode);
+    
+      const response = await axios.get(`https://web3-0ujz.onrender.com/api/levelUsers/${user.data.data?.referralCode}/3`);
       setLevelUsers(response.data);
     } catch (error) {
       console.error('Failed to fetch level users', error);
@@ -61,7 +64,7 @@ export default function AffiliateProgram({referralCode}:any) {
 
   useEffect(() => {
     if (referralCode !== null || undefined) {
-      console.log("Fetching level users...");
+      // console.log("Fetching level users...");
       fetchLevelUsers();
     }
   }, [referralCode,fetchLevelUsers]);
@@ -78,7 +81,7 @@ export default function AffiliateProgram({referralCode}:any) {
   }, [levelUsers, setTotalRefereduser]);
   
 
-  console.log("----->reafcode from aff",referralCode);
+  // console.log("----->reafcode from aff",referralCode);
   
   return (
     <>

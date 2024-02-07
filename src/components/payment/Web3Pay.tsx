@@ -7,7 +7,7 @@ const PaymentComponent = ({amount}:any) => {
   const { address } = useAccount()
   const handlePay = async () => {
     // Assuming WalletConnect is already connected and available in window.ethereum
-    console.log("=------->clicked");
+    // console.log("=------->clicked");
     
     const web3 = new Web3((window as any).ethereum);
 

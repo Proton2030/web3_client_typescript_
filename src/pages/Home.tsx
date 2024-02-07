@@ -33,7 +33,7 @@ export default function CloudBoost() {
         },
       });
 
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error('Registration failed', error);
       console.log('Full error object:', error);

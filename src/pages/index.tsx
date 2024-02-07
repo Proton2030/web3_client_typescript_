@@ -37,11 +37,11 @@ useEffect(() => {
     fetchUserByUserId();
   }, [fetchUserByUserId]);
 
-  console.log("user", user);
+  // console.log("user", user);
 
   return (
     <>
-      <Navbar />
+      <Navbar is_active={user?.is_active} />
       <CloudBoost />
       {address ? (
         <>

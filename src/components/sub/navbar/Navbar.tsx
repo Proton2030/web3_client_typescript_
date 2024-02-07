@@ -11,7 +11,7 @@ import { SliderBtn } from "@/components/sub/slidderBtn/SliderBtn";
 // import Acount from "../Popover/Popover";
 import { ActivateAcountBtn } from "../DepayBtn/Dpay";
 
-export default function Navbar() {
+export default function Navbar({is_active}:any) {
 	const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
 		useState(false);
 	const [isConnectHighlighted, setIsConnectHighlighted] = useState(false);
@@ -25,7 +25,9 @@ export default function Navbar() {
 		setIsNetworkSwitchHighlighted(false);
 		setIsConnectHighlighted(false);
 	};
-	// console.log("account", address);
+	
+console.log("------->active user ",is_active);
+
 
 	return (
 		<>
@@ -64,7 +66,11 @@ export default function Navbar() {
 							(address) ?
 								<>
 								<w3m-button />
+								{
+									(!is_active)?
 								<ActivateAcountBtn/>
+								:null
+								}
 									<div
 										onClick={closeAll}
 										className={`${styles.highlight} ${isConnectHighlighted
