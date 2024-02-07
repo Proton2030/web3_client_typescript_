@@ -62,6 +62,49 @@ export default function AffiliateProgram({referralCode}:any) {
     }
   }, []);
 
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(referralCode).then(() => {
+  
+    }).catch((error) => {
+      console.error("Failed to copy referral code to clipboard:", error);
+    });
+  };
+
+  const shareOnSocialMedia = (platform: string) => {
+    let shareLink = referralCode;
+    switch (platform) {
+      case "whatsapp":
+        shareLink = `https://wa.me/?text=${referralCode}`;
+        break;
+      case "facebook":
+        // Replace the URL with your desired URL
+        shareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          "https://example.com"
+        )}`;
+        break;
+      case "twitter":
+        // Replace the URL and text with your desired URL and text
+        shareLink = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          "https://example.com"
+        )}&text=${encodeURIComponent("Check out this referral link: " + referralCode)}`;
+        break;
+      case "instagram":
+        // Replace the URL and text with your desired URL and text
+        shareLink = `https://www.instagram.com/?url=${encodeURIComponent("https://example.com")}`;
+        break;
+      case "telegram":
+        // Replace the URL and text with your desired URL and text
+        shareLink = `https://t.me/share/url?url=${encodeURIComponent(
+          "https://example.com"
+        )}&text=${encodeURIComponent("Check out this referral link: " + referralCode)}`;
+        break;
+      default:
+        break;
+    }
+    window.open(shareLink, "_blank");
+  };
+
   useEffect(() => {
     if (referralCode !== null || undefined) {
       // console.log("Fetching level users...");
@@ -81,8 +124,7 @@ export default function AffiliateProgram({referralCode}:any) {
   }, [levelUsers, setTotalRefereduser]);
   
 
-  // console.log("----->reafcode from aff",referralCode);
-  
+ 
   return (
     <>
       <main className={styles.main}>
@@ -223,7 +265,7 @@ export default function AffiliateProgram({referralCode}:any) {
                         <p className="text-sm text-gray-200">Share this link via</p>
 
                         <div className="flex justify-around my-4">
-                          <div
+                          <div onClick={() => shareOnSocialMedia("facebook")}
                             className="border hover:bg-[#1877f2] w-12 h-12 fill-[#1877f2] hover:fill-white border-blue-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-blue-500/50 cursor-pointer"
                           >
                             <svg
@@ -237,7 +279,7 @@ export default function AffiliateProgram({referralCode}:any) {
                               ></path>
                             </svg>
                           </div>
-                          <div
+                          <div onClick={() => shareOnSocialMedia("twitter")}
                             className="border hover:bg-[#1d9bf0] w-12 h-12 fill-[#1d9bf0] hover:fill-white border-blue-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-sky-500/50 cursor-pointer"
                           >
                             <svg
@@ -251,7 +293,7 @@ export default function AffiliateProgram({referralCode}:any) {
                               ></path>
                             </svg>
                           </div>
-                          <div
+                          <div onClick={() => shareOnSocialMedia("instagram")}
                             className="border hover:bg-[#bc2a8d] w-12 h-12 fill-[#bc2a8d] hover:fill-white border-pink-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-pink-500/50 cursor-pointer"
                           >
                             <svg
@@ -270,7 +312,7 @@ export default function AffiliateProgram({referralCode}:any) {
                             </svg>
                           </div>
 
-                          <div
+                          <div onClick={() => shareOnSocialMedia("whatsapp")}
                             className="border hover:bg-[#25D366] w-12 h-12 fill-[#25D366] hover:fill-white border-green-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-green-500/50 cursor-pointer"
                           >
                             <svg
@@ -288,6 +330,7 @@ export default function AffiliateProgram({referralCode}:any) {
                           </div>
 
                           <div
+                          onClick={() => shareOnSocialMedia("telegram")}
                             className="border hover:bg-[#229ED9] w-12 h-12 fill-[#229ED9] hover:fill-white border-sky-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-sky-500/50 cursor-pointer"
                           >
                             <svg
@@ -322,7 +365,7 @@ export default function AffiliateProgram({referralCode}:any) {
 
                           <input className="w-full outline-none bg-transparent text-gray-200" type="text" placeholder="link" value={referralCode} />
 
-                          <button className="bg-indigo-500 text-white rounded text-sm py-2 px-5 mr-2 hover:bg-indigo-600">
+                          <button onClick={copyToClipboard} className="bg-indigo-500 text-white rounded text-sm py-2 px-5 mr-2 hover:bg-indigo-600">
                             Copy
                           </button>
                         </div>

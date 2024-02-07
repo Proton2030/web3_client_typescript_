@@ -31,7 +31,7 @@ console.log("------->active user ",is_active);
 
 	return (
 		<>
-			<header>
+			<header className="h-24 bg-gray-900 z-50 overflow-hidden">
 				<div
 					className={`mb-5 ${styles.backdrop}`}
 					style={{
@@ -64,12 +64,13 @@ console.log("------->active user ",is_active);
 
 						{
 							(address) ?
-								<>
+								<div className="flex flex-col ">
 								<w3m-button />
 								{
 									(!is_active)?
-								<ActivateAcountBtn/>
-								:"Activated"
+								<ActivateAcountBtn context={"Activate Account"}/>
+								:null
+
 								}
 									<div
 										onClick={closeAll}
@@ -78,9 +79,8 @@ console.log("------->active user ",is_active);
 											: ``
 											}`}
 									>
-									{/* <Acount/> */}
 									</div>
-								</>
+								</div>
 								: null
 						}
 					</div>

