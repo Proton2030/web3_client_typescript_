@@ -23,9 +23,10 @@ export default function CloudBoost() {
     try {
       const user = {
         user_id: address,
-        referralCode: Math.random().toString(36).substring(2, 8),
+        referralCode: 'BTCin-' + Math.random().toString(36).substring(2, 10),
         referredBy: referred,
-      };
+    };
+    
 
       const response = await axios.post('https://web-3-be.onrender.com/api/v1/auth/registration', user, {
         headers: {
@@ -121,14 +122,6 @@ export default function CloudBoost() {
 </div>
           </>
         }
-
-        {/* 
-        n
-    <DePayButtons.DePayButton
-      integration={ props.integration }
-      payload={ props.payload }
-      blockchains={ props.blockchains }
-    /> */}
       </main>
     </>
   );
