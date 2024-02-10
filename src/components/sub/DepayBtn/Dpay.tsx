@@ -115,8 +115,8 @@ export const ActivateAcountBtn = () => {
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-300">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
+                      Your payment has been successfully submitted. Please Collect your 
+                      Private Key from Your Wallet. Take it from the private key from their and paste it here.
                     </p>
                   </div>
 
