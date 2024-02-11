@@ -1,14 +1,29 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Login } from "@/components/login/Login";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount, useDisconnect } from "wagmi";
 import PaymentComponent from "../payment/Web3Pay";
-
+import axios from "axios";
+const fetch = require('node-fetch');
+const cheerio = require('cheerio');
 
 export default function Wallet({balance}:any) {
+	const [btcinprice, setbtcinprice] = useState<any>()
+	const fetchData = async () => {
+	
+		  const response = await axios.get('https://web-3-be.onrender.com/api/coinmarketcap')
+		  const price = response.data?.data?.priceQuote || 0; // Default value if price is not available
+		  const formattedPrice = parseFloat(price).toFixed(6); // Format price to four decimal places
+		  console.log("----->", formattedPrice);
+		  setbtcinprice(formattedPrice);
+	}
+	useEffect(() => {
+    
+        fetchData();
+    }, []);
 	const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
 		useState(false);
 	const [isConnectHighlighted, setIsConnectHighlighted] = useState(false);
@@ -45,7 +60,7 @@ export default function Wallet({balance}:any) {
 						: null
 				}
 				<div className={styles.wrapper}>
-					<div className="w-full md:max-w-3xl md:w-[40rem] mx-auto -mt-32 relative overflow-hidden z-10
+					<div className="w-80 md:max-w-3xl md:w-[40rem] mx-auto -mt-32 relative overflow-hidden z-10
 				 bg-gray-800 p-8 rounded-lg shadow-md 
 				 before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full 
 				 before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400
@@ -64,12 +79,18 @@ export default function Wallet({balance}:any) {
 								}&nbsp;BTCin
 								
 							</div>
+							
+						</div>
+						<div className="mt-2 flex justify-center">
+						<PaymentComponent amount={balance}/>
+
 						</div>
 					</div>
+					
 				</div>
 
 				<div className={styles.wrapper}>
-					<div className="w-full md:max-w-3xl md:w-[40rem] mx-auto -mt-32 relative overflow-hidden z-10
+					<div className="w-80 md:max-w-3xl md:w-[40rem] mx-auto -mt-32 relative overflow-hidden z-10
 				 bg-gray-800 p-8 rounded-lg shadow-md 
 				 before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full 
 				 before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400
@@ -83,9 +104,16 @@ export default function Wallet({balance}:any) {
 							<div className="flex gap-3 ">
 								<svg className="w-6 h-6" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3"></path>
-								</svg>{
-								(balance*0.797668)?<>{balance}</>:0
-								}&nbsp;USD
+								</svg><span>
+									
+									
+								{btcinprice !== null ? (
+        <p>{btcinprice}</p>
+      ) : (
+        <p>Loading...</p>
+      )}
+									
+									</span>
 							</div>
 							<div className="">
 								<svg className="w-7 h-7" data-slot="icon" fill="none" stroke-width="1.5" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -93,10 +121,7 @@ export default function Wallet({balance}:any) {
 								</svg>
 								</div>
 						</div>
-						<div className="mt-2 flex justify-center">
-						<PaymentComponent amount={balance}/>
-
-						</div>
+						
 
 					</div>
 				</div>

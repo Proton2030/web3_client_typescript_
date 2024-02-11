@@ -66,12 +66,12 @@ console.log("------->active user ",is_active);
 							(address) ?
 								<div className="flex flex-col ">
 								<w3m-button />
-								{
+								{/* {
 									(!is_active)?
 								<ActivateAcountBtn context={"Activate Account"}/>
 								:null
 
-								}
+								} */}
 									<div
 										onClick={closeAll}
 										className={`${styles.highlight} ${isConnectHighlighted

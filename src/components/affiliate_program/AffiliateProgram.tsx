@@ -135,7 +135,7 @@ export default function AffiliateProgram({referralCode}:any) {
         }
         <div className={styles.wrapper}>
 
-          <div className="w-full pr-1 md:max-w-3xl md:w-[40rem] mx-auto -mt-32 relative overflow-hidden z-10
+          <div className="w-full md:max-w-3xl md:w-[40rem] mx-auto -mt-32 relative overflow-hidden z-10
 				 bg-gray-800 p-8 rounded-lg shadow-md 
 				 before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full 
 				 before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400
@@ -151,7 +151,7 @@ export default function AffiliateProgram({referralCode}:any) {
                 <div className="text">Link</div>
               </button>
 
-              <div className="mb-7  flex w-full px-5 py-4 rounded-xl justify-between border border-gray-500">
+              <div className="mb-7  flex gap-5 w-full px-5 py-4 rounded-xl justify-between border border-gray-500">
                 <div className="flex items-center text-gray-300">
 
                   <div className="text-xs md:text-xl md:mr-8 font-semibold">Total Referrals:</div>

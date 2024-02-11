@@ -9,6 +9,7 @@ import { ConnectBtn } from "@/components/sub/button/ConnectBtn";
 import { Loader } from "@/components/Loader/Loader";
 import axios from "axios";
 import img from "../../public/landingimg.png"
+import { ActivateAcountBtn } from "@/components/sub/DepayBtn/Dpay";
 export default function CloudBoost() {
   const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
     useState(false);
@@ -76,7 +77,7 @@ export default function CloudBoost() {
         {
           (address) ?
             <>
-              <div className="text-3xl font-semibold text-white">Cloud Boost</div>
+              <div className="text-3xl mt-10 font-semibold text-white">Cloud Boost</div>
               <div className={styles.wrapper}>
                 <div className="w-full md:max-w-4xl mx-auto -mt-20 md:w-[30rem] relative overflow-hidden z-10
            bg-gray-800 p-8 rounded-lg shadow-md 
@@ -86,6 +87,7 @@ export default function CloudBoost() {
                   <Loader />
                 </div>
                 </div>
+                <ActivateAcountBtn context={"Activate Account"}/>
             </>
             :
           <>

