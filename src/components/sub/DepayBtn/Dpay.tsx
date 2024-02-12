@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useAccount } from 'wagmi';
-import Web3 from 'web3';
 
-const ActivateAccountBtn = ({ context }: any) => {
+const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const { address } = useAccount();
 
@@ -11,19 +10,15 @@ const ActivateAccountBtn = ({ context }: any) => {
     setLoading(true);
 
     try {
-      // Check if window.ethereum is available
+      // Check if ethereum is available
       if (!window.ethereum) {
-        throw new Error('Wallet provider not detected');
+        throw new Error('Mobile wallet not detected');
       }
 
-      // Create Web3 instance with the RPC endpoint for Polygon (Matic) network
-      const web3 = new Web3(new Web3.providers.HttpProvider('https://rpc-mainnet.maticvigil.com'));
-
-      // Enable the provider (WalletConnect or other provider)
-      await (window as any).ethereum.send('eth_requestAccounts');
+      // Request access to accounts
+      const accounts = await (window.ethereum as any).request({ method: 'eth_requestAccounts' });
 
       // Get current user's account
-      const accounts = await web3.eth.getAccounts();
       const fromAddress = accounts[0]; // Assuming the first account is used
 
       // Receiver's address (Replace with the recipient's address)
@@ -34,41 +29,30 @@ const ActivateAccountBtn = ({ context }: any) => {
       const maticDecimals = 18;
       const amountInWei = amountInMatic * Math.pow(10, maticDecimals);
 
-      // Send transaction using ethereum.sendAsync
-      (window as any).ethereum.sendAsync(
-        {
-          method: 'eth_sendTransaction',
-          params: [
-            {
-              from: address,
-              to: toAddress,
-              value: `0x${amountInWei.toString(16)}`, // Convert to hex
-            },
-          ],
-          id: 1, // Request ID
-        },
-        async (err: any, result: any) => {
-          if (err) {
-            console.error('Payment Error:', err);
-            alert(`Payment Failed. Error: ${err.message}`);
-          } else {
-            // Transaction successful, handle the response
-            alert('Payment Successful! Transaction Hash: ' + result.result);
-            const response = await axios.put(`https://web-3-be.onrender.com/api/v1/auth/activeuser/${address}`)
-            if(response.status===200){
-              alert("account activated")
-              // closeModal();
-            }else{
-              alert("Server error")
-              // closeModal();
-            }
-          }
-          setLoading(false);
-        }
-      );
+      // Send transaction using ethereum.request
+      const txHash = await (window.ethereum as any).request({
+        method: 'eth_sendTransaction',
+        params: [
+          {
+            from: address,
+            to: toAddress,
+            value: `0x${amountInWei.toString(16)}`, // Convert to hex
+          },
+        ],
+      });
+
+      // Transaction successful, handle the response
+      alert('Payment Successful! Transaction Hash: ' + txHash);
+      const response = await axios.put(`https://web-3-be.onrender.com/api/v1/auth/activeuser/${address}`);
+      if (response.status === 200) {
+        alert('Account activated');
+      } else {
+        throw new Error('Server error');
+      }
     } catch (error) {
       console.error('Payment Error:', error);
       alert(`Payment Failed. Error: ${error}`);
+    } finally {
       setLoading(false);
     }
   };
