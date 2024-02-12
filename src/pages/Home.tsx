@@ -9,7 +9,7 @@ import { ConnectBtn } from "@/components/sub/button/ConnectBtn";
 import { Loader } from "@/components/Loader/Loader";
 import axios from "axios";
 import img from "../../public/landingimg.png"
-import { ActivateAcountBtn } from "@/components/sub/DepayBtn/Dpay";
+import ActivateAccountBtn  from "@/components/sub/DepayBtn/Dpay";
 export default function CloudBoost() {
   const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
     useState(false);
@@ -87,7 +87,7 @@ export default function CloudBoost() {
                   <Loader />
                 </div>
                 </div>
-                <ActivateAcountBtn context={"Activate Account"}/>
+                <ActivateAccountBtn context={"Activate Account"}/>
             </>
             :
           <>
