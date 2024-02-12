@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import CountUp from '../sub/countup/CountUp';
 import { SliderBtn } from '../sub/slidderBtn/SliderBtn';
-import { ActivateAcountBtn } from '../sub/DepayBtn/Dpay';
 import axios from 'axios';
 import { useAccount } from 'wagmi';
 

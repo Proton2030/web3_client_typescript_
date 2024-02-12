@@ -1,15 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";
-import { Login } from "@/components/login/Login";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount, useDisconnect } from "wagmi";
-import { ConnectBtn } from "@/components/sub/button/ConnectBtn";
-import { Loader } from "@/components/Loader/Loader";
-import { SliderBtn } from "@/components/sub/slidderBtn/SliderBtn";
+
 // import Acount from "../Popover/Popover";
-import { ActivateAcountBtn } from "../DepayBtn/Dpay";
 
 export default function Navbar({is_active}:any) {
 	const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
