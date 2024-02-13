@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Link from 'next/link';
 import React, { useEffect } from 'react'
 import { useAccount } from 'wagmi'
 
@@ -51,12 +52,12 @@ const SuccessPage = () => {
     <p className="text-neutral-300">
       Your account has been activated .
     </p>
-    <a href='/' className="cursor-pointer group relative flex gap-1.5 px-8 py-4 bg-black bg-opacity-80 text-[#f1f1f1] rounded-3xl hover:bg-opacity-70 transition font-semibold shadow-md">
+    <Link href='/' className="cursor-pointer group relative flex gap-1.5 px-8 py-4 bg-black bg-opacity-80 text-[#f1f1f1] rounded-3xl hover:bg-opacity-70 transition font-semibold shadow-md">
   Go back
   <div className="absolute opacity-0 -bottom-full rounded-md py-2 px-2 bg-black bg-opacity-70 left-1/2 -translate-x-1/2 group-hover:opacity-100 transition-opacity shadow-lg">
   Go back
   </div>
-</a>
+</Link>
   </div>
 </div>
 

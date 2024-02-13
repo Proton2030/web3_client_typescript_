@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { useAccount } from 'wagmi';
 
@@ -69,12 +70,12 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
     </button>
 
     {/* //for mobile vision */}
-    <a
+    <Link
       href="https://link.depay.com/4tuqcVjw3naGPs31GL2xc9"
       className="-mt-20 inline md:hidden hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
     >
       {loading ? 'Processing...' : context}
-    </a>
+    </Link>
      </>
   );
 };
