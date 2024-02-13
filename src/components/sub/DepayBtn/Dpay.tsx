@@ -58,13 +58,24 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
   };
 
   return (
+    <>
+   
     <button
       onClick={handlePay}
       disabled={loading}
-      className="-mt-20 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
+      className="-mt-20 hidden md:inline hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
     >
       {loading ? 'Processing...' : context}
     </button>
+
+    {/* //for mobile vision */}
+    <a
+      href="https://link.depay.com/4tuqcVjw3naGPs31GL2xc9"
+      className="-mt-20 inline md:hidden hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
+    >
+      {loading ? 'Processing...' : context}
+    </a>
+     </>
   );
 };
 
