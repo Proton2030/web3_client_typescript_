@@ -71,7 +71,7 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
 
     {/* //for mobile vision */}
     <Link
-      href="https://link.depay.com/jo4mkTrT9baZvmDapmXO"
+      href="https://pay.radom.network/pay/f0b93462-2ae9-4c90-a375-720785d53951"
       className="-mt-20 inline md:hidden hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
     >
       {loading ? 'Processing...' : context}
