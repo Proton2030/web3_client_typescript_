@@ -10,7 +10,7 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const { address } = useAccount();
   const [transactionHash, setTransactionHash] = useState<string>('');
-  let [isOpen, setIsOpen] = useState(true)
+  let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
     setIsOpen(false)
@@ -137,7 +137,7 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
                     Acount Activation Request
                   </Dialog.Title>
                   <div className="mt-2">
-                  <Image width={200} alt='qr' src={qr} /> {/* Replace path_to_your_image with actual image path */}
+                  <Image width={300} height={300} alt='qr' src={qr} /> {/* Replace path_to_your_image with actual image path */}
                   <label className='text-black'>Enter your Transcation Hash</label>
       <input
         type="text"
