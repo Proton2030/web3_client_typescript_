@@ -11,6 +11,7 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
   const { address } = useAccount();
   const [transactionHash, setTransactionHash] = useState<string>('');
   let [isOpen, setIsOpen] = useState(false)
+  const [isAddressCopied, setIsAddressCopied] = useState<boolean>(false); // State to track if address is copied
 
   function closeModal() {
     setIsOpen(false)
@@ -19,7 +20,10 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
   function openModal() {
     setIsOpen(true)
   }
-  
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText('0x278468534C7400F43340eC47B20A20253a5294FB'); // Copy address to clipboard
+    setIsAddressCopied(true); // Set the state to indicate successful copy
+  };
   const handlePay = async () => {
     setLoading(true);
 
@@ -85,27 +89,27 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
       // Handle error
     }
   };
-  
+
   return (
     <>
-   
-    <button
-      onClick={handlePay}
-      disabled={loading}
-      className="-mt-20  hidden md:inline hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
-    >
-      {loading ? 'Processing...' : context}
-    </button>
 
-    {/* //for mobile vision */}
-    <button  onClick={openModal}
-      // href="https://pay.radom.network/pay/3b4ddb91-31be-4fe7-873d-1712cdb4ea6e"
-      className="-mt-72 inline md:hidden hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
-    >
-      {loading ? 'Processing...' : context}
-    </button>
+      <button
+        onClick={handlePay}
+        disabled={loading}
+        className="-mt-20  hidden md:inline hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
+      >
+        {loading ? 'Processing...' : context}
+      </button>
 
-    <Transition appear show={isOpen} as={Fragment}>
+      {/* //for mobile vision */}
+      <button onClick={openModal}
+        // href="https://pay.radom.network/pay/3b4ddb91-31be-4fe7-873d-1712cdb4ea6e"
+        className="-mt-72 inline md:hidden hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
+      >
+        {loading ? 'Processing...' : context}
+      </button>
+
+      <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
@@ -138,22 +142,33 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
                     Acount Activation Request for 1 Matic
                   </Dialog.Title>
                   <div className="mt-2">
-                  <Image width={300} height={300} alt='qr' src={qr} /> {/* Replace path_to_your_image with actual image path */}
-                  <label className='text-black'>Enter your Transcation Hash</label>
-      <input
-        type="text"
-        value={transactionHash}
-        onChange={(e) => setTransactionHash(e.target.value)}
-        placeholder="Enter transaction hash"
+                    <div className="flex flex-col justify-start  items-center text-xm text-gray-800">
+                      <button onClick={handleCopyAddress}  className="cursor-pointer bg-gray-200 rounded-lg px-4 py-2">
+                      {isAddressCopied ? "Copied" : "Copy"}
+                      </button>
+                      <div className="text-xs">0x278468534C7400F43340eC47B20A20253a5294FB</div>
+                    </div>
+                    
+                    <Image width={250} height={250} alt='qr' src={qr} className='mx-auto' /> {/* Replace path_to_your_image with actual image path */}
+                    <div className="flex justify-center flex-col">
+                    <label className='text-black mx-auto text-sm'>Transcation Hash:</label>
+                    <input
+                      type="text"
+                      value={transactionHash}
 
-        className='text-black bg-gray-100 px-5 py-3 rounded-lg shadow-lg'
-      />
+                      onChange={(e) => setTransactionHash(e.target.value)}
+                      placeholder="Enter transaction hash"
+
+                      className='text-black mx-auto bg-gray-100 px-5 py-3 rounded-lg shadow-lg'
+                    />
+                    </div>
+                   
                   </div>
 
-                  <div className="mt-4">
+                  <div className="mt-4 flex justify-center">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-gray-800 text-gray-100 px-7 py-3"
                       onClick={handleSubmit}
                     >
                       Submit
@@ -165,7 +180,7 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
           </div>
         </Dialog>
       </Transition>
-     </>
+    </>
   );
 };
 

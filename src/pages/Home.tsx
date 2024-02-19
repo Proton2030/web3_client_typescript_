@@ -12,7 +12,7 @@ import img from "../../public/landingimg.png"
 import ActivateAccountBtn from "@/components/sub/activateacountBt/ActivateAccount";
 
 
-export default function CloudBoost({user}:any) {
+export default function CloudBoost({ user }: any) {
 
   const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
     useState(false);
@@ -29,8 +29,8 @@ export default function CloudBoost({user}:any) {
         user_id: address,
         referralCode: 'BTCin-' + Math.random().toString(36).substring(2, 10),
         referredBy: referred,
-    };
-    
+      };
+
 
       const response = await axios.post('https://web-3-be.onrender.com/api/v1/auth/registration', user, {
         headers: {
@@ -89,52 +89,52 @@ export default function CloudBoost({user}:any) {
             after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12 ">
                   <Loader />
                 </div>
-                </div>
-                {
-                  !user?.is_active ? 
-                <ActivateAccountBtn context={"Activate Account"}/>
-                : 
-                <button  
-                className="-mt-72 text-xs inline md:hidden hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
-              >
-                Congrats! Your Account is now Activated
-              </button>
-                }
+              </div>
+              {
+                !user?.is_active ?
+                  <ActivateAccountBtn context={"Activate Account"} />
+                  :
+                  <button
+                    className="-mt-72 text-xs inline md:hidden hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
+                  >
+                    Congrats! Your Account is now Activated
+                  </button>
+              }
             </>
             :
-          <>
-            <div className="w-full h-[100vh]">
-    
-    <section className="py-12 h-full pt-56  sm:pb-16 lg:pb-20 xl:pb-24">
-        <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-            <div className="grid items-center max-w-5xl grid-cols-1 mx-auto gap-y-8 lg:grid-cols-5 gap-x-16">
-                <div className="max-w-md mx-auto text-center lg:max-w-none lg:col-span-3">
-                    <div className="text-4xl font-normal text-white  sm:text-5xl lg:text-4xl xl:text-6xl">BTCin  <span className="text-transparent bg-clip-text uppercase bg-gradient-to-r from-cyan-500 to-purple-500">Stakings</span></div>
-                    <p className="mt-6 text-lg font-normal text-white sm:text-xl">A community centric #decentralized staking & referral reward distribution system.</p>
-                    <div className="mt-8 sm:mt-10 gap-5">
-                    <div className="mb-5">Enter Referrer Address</div>
-                    <div className="groupinput mx-auto mb-5 w-60">
-                    <svg className="icon" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"></path>
-</svg>
-    <input  value={referred} onChange={(e) => setReferred(e.target.value)}
-                   placeholder="Referred by (optional)"
-                    type="text" className="input rounded-full"/>
-</div>
+            <>
+              <div className="w-full h-[100vh]">
 
-                        <a onClick={() => open()} title="" className="inline-flex text-lg items-center justify-center px-8 py-4 font-normal text-white transition-all duration-200 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:contrast-150" role="button"> 
-                        Connect wallet to Login </a>
+                <section className="py-12 h-full pt-56  sm:pb-16 lg:pb-20 xl:pb-24">
+                  <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+                    <div className="grid items-center max-w-5xl grid-cols-1 mx-auto gap-y-8 lg:grid-cols-5 gap-x-16">
+                      <div className="max-w-md mx-auto text-center lg:max-w-none lg:col-span-3">
+                        <div className="text-4xl font-normal text-white  sm:text-5xl lg:text-4xl xl:text-6xl">BTCin  <span className="text-transparent bg-clip-text uppercase bg-gradient-to-r from-cyan-500 to-purple-500">Stakings</span></div>
+                        <p className="mt-6 text-lg font-normal text-white sm:text-xl">A community centric #decentralized staking & referral reward distribution system.</p>
+                        <div className="mt-8 sm:mt-10 gap-5">
+                          <div className="mb-5">Enter Referrer Address</div>
+                          <div className="groupinput mx-auto mb-5 w-60">
+                            <svg className="icon" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"></path>
+                            </svg>
+                            <input value={referred} onChange={(e) => setReferred(e.target.value)}
+                              placeholder="Referred by (optional)"
+                              type="text" className="input rounded-full" />
+                          </div>
+
+                          <a onClick={() => open()} title="" className="inline-flex text-lg items-center justify-center px-8 py-4 font-normal text-white transition-all duration-200 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:contrast-150" role="button">
+                            Connect wallet to Login </a>
+                        </div>
+                      </div>
+
+                      <div className="lg:col-span-2 lg:order-first">
+                        <img className="w-20 lg:w-[50rem] mx-auto" src={"https://www.btcin.in/tokenLogoSmall.svg"} alt="" />
+                      </div>
                     </div>
-                </div>
-
-                <div className="lg:col-span-2 lg:order-first">
-                    <img className="w-20 lg:w-[50rem] mx-auto" src={"https://www.btcin.in/tokenLogoSmall.svg"} alt="" />
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-          </>
+                  </div>
+                </section>
+              </div>
+            </>
         }
       </main>
     </>
