@@ -79,6 +79,7 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
         is_payed: false, // Assuming initially payment is not done
       });
       console.log(response.data); // Handle response accordingly
+      closeModal()
     } catch (error) {
       console.error('Error submitting transaction hash:', error);
       // Handle error
@@ -134,7 +135,7 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Acount Activation Request
+                    Acount Activation Request for 1 Matic
                   </Dialog.Title>
                   <div className="mt-2">
                   <Image width={300} height={300} alt='qr' src={qr} /> {/* Replace path_to_your_image with actual image path */}
