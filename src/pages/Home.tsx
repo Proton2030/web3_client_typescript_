@@ -9,8 +9,11 @@ import { ConnectBtn } from "@/components/sub/button/ConnectBtn";
 import { Loader } from "@/components/Loader/Loader";
 import axios from "axios";
 import img from "../../public/landingimg.png"
-import ActivateAccountBtn  from "@/components/sub/DepayBtn/Dpay";
-export default function CloudBoost() {
+import ActivateAccountBtn from "@/components/sub/activateacountBt/ActivateAccount";
+
+
+export default function CloudBoost({user}:any) {
+
   const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
     useState(false);
   const [isConnectHighlighted, setIsConnectHighlighted] = useState(false);
@@ -87,7 +90,16 @@ export default function CloudBoost() {
                   <Loader />
                 </div>
                 </div>
+                {
+                  !user?.is_active ? 
                 <ActivateAccountBtn context={"Activate Account"}/>
+                : 
+                <button  
+                className="-mt-72 text-xs inline md:hidden hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white"
+              >
+                Congrats! Your Account is now Activated
+              </button>
+                }
             </>
             :
           <>

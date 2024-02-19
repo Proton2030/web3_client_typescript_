@@ -42,7 +42,7 @@ useEffect(() => {
   return (
     <>
       <Navbar is_active={user?.is_active} />
-      <CloudBoost />
+      <CloudBoost user={user} />
       {address ? (
         <>
           <Wallet balance={user?.mining_balance} />
