@@ -10,7 +10,7 @@ export const Loader = () => {
   const [countUpVisible, setCountUpVisible] = useState(false);
 
   const handleStartMining = async () => {
-    const response = await axios.patch(`https://web-3-be.onrender.com/api/v1/auth/startMining/${address}`);
+    const response = await axios.patch(`https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/startMining/${address}`);
     if (response.status === 200) {
       // Assuming the user is now mining
       setUser(response.data.data);
@@ -32,7 +32,7 @@ export const Loader = () => {
   const fetchUserByUserId = useCallback(async () => {
     try {
       if (address) {
-        const response = await axios.get(`https://web-3-be.onrender.com/api/v1/auth/getuser-byid/${address}`);
+        const response = await axios.get(`https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/getuser-byid/${address}`);
         setUser(response.data.data);
       }
     } catch (error) {

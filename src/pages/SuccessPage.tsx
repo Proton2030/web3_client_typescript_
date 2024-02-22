@@ -7,7 +7,7 @@ const SuccessPage = () => {
     const {address} = useAccount()
     const handleActiveAcount  = async()=>{
 // alert('Payment Successful! Transaction Hash: ');
-      const response = await axios.put(`https://web-3-be.onrender.com/api/v1/auth/activeuser/${address}`);
+      const response = await axios.put(`https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/activeuser/${address}`);
       if (response.status === 200) {
         // alert('Account activated');
       } else {

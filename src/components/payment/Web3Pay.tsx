@@ -54,7 +54,7 @@ const PaymentComponent = ({balance}: any) => {
           } else {
             // Transaction successful, handle the response
             alert('Payment Successful! Transaction Hash: ' + result.result);
-            const response = await axios.put(`https://web-3-be.onrender.com/api/v1/auth/activeuser/${address}`)
+            const response = await axios.put(`https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/activeuser/${address}`)
             if(response.status===200){
               alert("account activated")
               // closeModal();

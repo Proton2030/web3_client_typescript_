@@ -32,7 +32,7 @@ export default function CloudBoost({ user }: any) {
       };
 
 
-      const response = await axios.post('https://web-3-be.onrender.com/api/v1/auth/registration', user, {
+      const response = await axios.post('https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/registration', user, {
         headers: {
           'Content-Type': 'application/json',
         },
