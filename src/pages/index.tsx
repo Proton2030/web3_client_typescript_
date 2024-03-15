@@ -7,10 +7,11 @@ import Navbar from "@/components/sub/navbar/Navbar";
 import Wallet from "@/components/wallet/Wallet";
 import AffiliateProgram from "@/components/affiliate_program/AffiliateProgram";
 import { History } from "@/components/payment/History";
-import  Web3Pay from "@/components/payment/Web3Pay";
+import Web3Pay from "@/components/payment/Web3Pay";
 import PaymentComponent from "@/components/payment/Web3Pay";
 export default function Home() {
-  const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] = useState(false);
+  const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
+    useState(false);
   const [isConnectHighlighted, setIsConnectHighlighted] = useState(false);
   const [user, setUser] = useState<any>();
 
@@ -24,16 +25,18 @@ export default function Home() {
   };
 
   const fetchUserByUserId = useCallback(async () => {
-	try {
-	  if (address) {
-		const response = await axios.get(`https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/getuser-byid/${address}`);
-		setUser(response.data.data);
-	  }
-	} catch (error) {
-	  console.error("Error fetching user:", error);
-	}
-}, [address]);
-useEffect(() => {
+    try {
+      if (address) {
+        const response = await axios.get(
+          `http://13.235.76.30:8989/api/v1/auth/getuser-byid/${address}`
+        );
+        setUser(response.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  }, [address]);
+  useEffect(() => {
     fetchUserByUserId();
   }, [fetchUserByUserId]);
 
@@ -46,7 +49,7 @@ useEffect(() => {
       {address ? (
         <>
           <Wallet balance={user?.mining_balance} />
-          <AffiliateProgram  referralCode={user?.referralCode}/>
+          <AffiliateProgram referralCode={user?.referralCode} />
         </>
       ) : null}
     </>
