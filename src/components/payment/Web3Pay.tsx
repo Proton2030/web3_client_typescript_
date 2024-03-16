@@ -57,7 +57,7 @@ const PaymentComponent = ({ balance }: any) => {
             // Transaction successful, handle the response
             alert("Payment Successful! Transaction Hash: " + result.result);
             const response = await axios.put(
-              `http://13.235.76.30:8989/api/v1/auth/activeuser/${address}`
+              `https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/activeuser/${address}`
             );
             if (response.status === 200) {
               alert("account activated");

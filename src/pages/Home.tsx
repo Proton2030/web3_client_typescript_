@@ -30,7 +30,7 @@ export default function CloudBoost({ user }: any) {
       };
 
       const response = await axios.post(
-        "http://13.235.76.30:8989/api/v1/auth/registration",
+        "https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/registration",
         user,
         {
           headers: {

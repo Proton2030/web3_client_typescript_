@@ -51,12 +51,12 @@ export default function AffiliateProgram({ referralCode }: any) {
   const fetchLevelUsers = useCallback(async () => {
     try {
       const user = await axios.get(
-        `http://13.235.76.30:8989/api/v1/auth/getuser-byid/${address}`
+        `https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/getuser-byid/${address}`
       );
       // console.log("---->user from affilatye",user.data.data?.referralCode);
 
       const response = await axios.get(
-        `http://13.235.76.30:8989/api/levelUsers/${user.data.data?.referralCode}/3`
+        `https://d1sc3hq7fqk6dl.cloudfront.net/api/levelUsers/${user.data.data?.referralCode}/3`
       );
       setLevelUsers(response.data);
     } catch (error) {
