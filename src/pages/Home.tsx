@@ -26,7 +26,7 @@ export default function CloudBoost({ user }: any) {
       const user = {
         user_id: address,
         referralCode:
-          "http://localhost:3000/link/" +
+          "https://btc-in.vercel.app/link/" +
           Math.random().toString(36).substring(2, 10),
         referredBy: referred,
       };
