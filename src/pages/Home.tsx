@@ -15,7 +15,7 @@ export default function CloudBoost({ user }: any) {
   const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
     useState(false);
   const [isConnectHighlighted, setIsConnectHighlighted] = useState(false);
-  const [referred, setReferred] = useState(""); // New state to hold referredBy value
+  const [referred, setReferred] = useState("");
 
   const { open, close } = useWeb3Modal();
   const { address } = useAccount();
@@ -25,7 +25,9 @@ export default function CloudBoost({ user }: any) {
     try {
       const user = {
         user_id: address,
-        referralCode: "BTCin-" + Math.random().toString(36).substring(2, 10),
+        referralCode:
+          "http://localhost:3000/link/" +
+          Math.random().toString(36).substring(2, 10),
         referredBy: referred,
       };
 
@@ -52,6 +54,11 @@ export default function CloudBoost({ user }: any) {
       handleConnect();
     }
   }, [address, handleConnect]);
+
+  useEffect(() => {
+    const savedRefLink: any = localStorage.getItem("refLink");
+    setReferred(savedRefLink);
+  }, []);
 
   const closeAll = () => {
     setIsNetworkSwitchHighlighted(false);
