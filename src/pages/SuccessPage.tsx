@@ -8,7 +8,7 @@ const SuccessPage = () => {
   const handleActiveAcount = async () => {
     // alert('Payment Successful! Transaction Hash: ');
     const response = await axios.put(
-      `https://webapp.foebezzie.com//api/v1/auth/activeuser/${address}`
+      `https://webapp.foebezzie.com/api/v1/auth/activeuser/${address}`
     );
     if (response.status === 200) {
       // alert('Account activated');

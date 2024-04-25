@@ -11,7 +11,7 @@ export const Loader = () => {
 
   const handleStartMining = async () => {
     const response = await axios.patch(
-      `https://webapp.foebezzie.com//api/v1/auth/startMining/${address}`
+      `https://webapp.foebezzie.com/api/v1/auth/startMining/${address}`
     );
     if (response.status === 200) {
       // Assuming the user is now mining
@@ -35,7 +35,7 @@ export const Loader = () => {
     try {
       if (address) {
         const response = await axios.get(
-          `https://webapp.foebezzie.com//api/v1/auth/getuser-byid/${address}`
+          `https://webapp.foebezzie.com/api/v1/auth/getuser-byid/${address}`
         );
         setUser(response.data.data);
       }

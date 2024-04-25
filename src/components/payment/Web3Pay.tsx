@@ -57,7 +57,7 @@ const PaymentComponent = ({ balance }: any) => {
             // Transaction successful, handle the response
             alert("Payment Successful! Transaction Hash: " + result.result);
             const response = await axios.put(
-              `https://webapp.foebezzie.com//api/v1/auth/activeuser/${address}`
+              `https://webapp.foebezzie.com/api/v1/auth/activeuser/${address}`
             );
             if (response.status === 200) {
               alert("account activated");

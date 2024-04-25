@@ -14,7 +14,7 @@ export default function Wallet({ balance }: any) {
   const [btcinprice, setbtcinprice] = useState<any>();
   const fetchData = async () => {
     const response = await axios.get(
-      "https://webapp.foebezzie.com//api/coinmarketcap"
+      "https://webapp.foebezzie.com/api/coinmarketcap"
     );
     const price = response.data?.data?.priceQuote || 0; // Default value if price is not available
     const formattedPrice = parseFloat(price).toFixed(6); // Format price to four decimal places

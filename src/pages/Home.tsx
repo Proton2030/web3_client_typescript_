@@ -32,7 +32,7 @@ export default function CloudBoost({ user }: any) {
       };
 
       const response = await axios.post(
-        "https://webapp.foebezzie.com//api/v1/auth/registration",
+        "https://webapp.foebezzie.com/api/v1/auth/registration",
         user,
         {
           headers: {
