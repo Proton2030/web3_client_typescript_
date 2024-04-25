@@ -64,7 +64,7 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
       // Transaction successful, handle the response
       alert("Payment Successful! Transaction Hash: " + txHash);
       const response = await axios.put(
-        `https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/activeuser/${address}/${txHash}`
+        `https://webapp.foebezzie.com//api/v1/auth/activeuser/${address}/${txHash}`
       );
       if (response.status === 200) {
         alert("Account activated");
@@ -82,7 +82,7 @@ const ActivateAccountBtn: React.FC<{ context: string }> = ({ context }) => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/payment/reqpayment",
+        "https://webapp.foebezzie.com//api/v1/payment/reqpayment",
         {
           user_id: address, // Implement a function to get user_id
           hash_id: transactionHash,

@@ -28,7 +28,7 @@ export default function Home() {
     try {
       if (address) {
         const response = await axios.get(
-          `https://d1sc3hq7fqk6dl.cloudfront.net/api/v1/auth/getuser-byid/${address}`
+          `https://webapp.foebezzie.com//api/v1/auth/getuser-byid/${address}`
         );
         setUser(response.data.data);
       }
