@@ -2,14 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount, useDisconnect } from "wagmi";
 import axios from "axios";
-import CloudBoost from "./Home";
-import Navbar from "@/components/sub/navbar/Navbar";
-import Wallet from "@/components/wallet/Wallet";
-import AffiliateProgram from "@/components/affiliate_program/AffiliateProgram";
-import { History } from "@/components/payment/History";
-import Web3Pay from "@/components/payment/Web3Pay";
-import PaymentComponent from "@/components/payment/Web3Pay";
-import Down from "./Down";
+
 export default function Home() {
   const [isNetworkSwitchHighlighted, setIsNetworkSwitchHighlighted] =
     useState(false);
@@ -42,20 +35,17 @@ export default function Home() {
   }, [fetchUserByUserId]);
 
   // console.log("user", user);
-
   return (
     <>
       {/* <Navbar is_active={user?.is_active} />
-      <CloudBoost user={user} />
-      {address ? (
-        <>
-          <Wallet balance={user?.mining_balance} />
-          <AffiliateProgram referralCode={user?.referralCode} />
-        </>
-      ) : null} */}
-      <div className="ml-5">
-        <Down />
-      </div>
+            <CloudBoost user={user} />
+            {address ? (
+              <>
+                <Wallet balance={user?.mining_balance} />
+                <AffiliateProgram referralCode={user?.referralCode} />
+              </>
+            ) : null} */}
+      <Error />
     </>
   );
 }
