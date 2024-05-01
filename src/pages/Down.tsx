@@ -39,9 +39,11 @@ const Down = () => {
       </div>
       <div
         className="glitch mt-56"
-        data-text=" App   service is down due to missed maintenance ..."
+        data-text="Your data is secure.Please connect with  the developer regarding
+        the server costs..."
       >
-        App service is down due to missed maintenance ...
+        Your data is secure.Please connect with the developer regarding the
+        server costs...
       </div>
     </>
   );

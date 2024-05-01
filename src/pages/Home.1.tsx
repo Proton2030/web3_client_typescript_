@@ -44,8 +44,8 @@ export default function Home() {
                 <Wallet balance={user?.mining_balance} />
                 <AffiliateProgram referralCode={user?.referralCode} />
               </>
-            ) : null} */}
-      <Error />
+            ) : null}
+       */}
     </>
   );
 }
