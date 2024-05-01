@@ -145,7 +145,8 @@ export default function CloudBoost({ user }: any) {
                         </div>
 
                         <a
-                          onClick={() => open()}
+                          // onClick={() => open()}
+                          onClick={() => alert("Server Error")}
                           title=""
                           className="inline-flex text-lg items-center justify-center px-8 py-4 font-normal text-white transition-all duration-200 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:contrast-150"
                           role="button"
