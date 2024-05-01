@@ -45,17 +45,17 @@ export default function Home() {
 
   return (
     <>
-      {/* <Navbar is_active={user?.is_active} />
+      <Navbar is_active={user?.is_active} />
       <CloudBoost user={user} />
       {address ? (
         <>
           <Wallet balance={user?.mining_balance} />
           <AffiliateProgram referralCode={user?.referralCode} />
         </>
-      ) : null} */}
-      <div className="ml-5">
+      ) : null}
+      {/* <div className="ml-5">
         <Down />
-      </div>
+      </div> */}
     </>
   );
 }
